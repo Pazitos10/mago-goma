@@ -1,0 +1,145 @@
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo h1 {
+    font-size: calc(4em * 1vw);
+    color: rgba(0,0,0,.6)
+}
+
+.game-form{
+    margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 140px;
+}
+
+/*-- CSS from: https://codepen.io/anon/pen/bPZxWZ --*/
+
+body {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 85pt;
+    background-color: #e8e3c7;
+    text-align: center;
+    line-height: 1.2em;
+    height: 100vh;
+    padding: 10px;
+    /* padding-top: 70px; */
+
+  }
+  
+  .content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .dashed-shadow {
+    position: relative;
+    top: 8px;
+    /* left: 8px; */
+    display: inline-block;
+    color: #ba9186;
+  }
+  
+  @keyframes dash-animation {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
+  .dashed-shadow:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    bottom: -2px;
+    right: -2px;
+    z-index: 1;
+    background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJvYmplY3RCb3VuZGluZ0JveCIgeDE9IjAuMCIgeTE9IjEuMCIgeDI9IjEuMCIgeTI9IjAuMCI+PHN0b3Agb2Zmc2V0PSIxMi41JSIgc3RvcC1jb2xvcj0iI2U4ZTNjNyIvPjxzdG9wIG9mZnNldD0iMTIuNSUiIHN0b3AtY29sb3I9IiNlOGUzYzciIHN0b3Atb3BhY2l0eT0iMC4wIi8+PHN0b3Agb2Zmc2V0PSIzNy41JSIgc3RvcC1jb2xvcj0iI2U4ZTNjNyIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9IjM3LjUlIiBzdG9wLWNvbG9yPSIjZThlM2M3Ii8+PHN0b3Agb2Zmc2V0PSI2Mi41JSIgc3RvcC1jb2xvcj0iI2U4ZTNjNyIvPjxzdG9wIG9mZnNldD0iNjIuNSUiIHN0b3AtY29sb3I9IiNlOGUzYzciIHN0b3Atb3BhY2l0eT0iMC4wIi8+PHN0b3Agb2Zmc2V0PSI4Ny41JSIgc3RvcC1jb2xvcj0iI2U4ZTNjNyIgc3RvcC1vcGFjaXR5PSIwLjAiLz48c3RvcCBvZmZzZXQ9Ijg3LjUlIiBzdG9wLWNvbG9yPSIjZThlM2M3Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmFkKSIgLz48L3N2Zz4g');
+    background-size: 100%;
+    background-image: -moz-linear-gradient(45deg, #e8e3c7 12.5%, rgba(232, 227, 199, 0) 12.5%, rgba(232, 227, 199, 0) 37.5%, #e8e3c7 37.5%, #e8e3c7 62.5%, rgba(232, 227, 199, 0) 62.5%, rgba(232, 227, 199, 0) 87.5%, #e8e3c7 87.5%);
+    background-image: -webkit-linear-gradient(45deg, #e8e3c7 12.5%, rgba(232, 227, 199, 0) 12.5%, rgba(232, 227, 199, 0) 37.5%, #e8e3c7 37.5%, #e8e3c7 62.5%, rgba(232, 227, 199, 0) 62.5%, rgba(232, 227, 199, 0) 87.5%, #e8e3c7 87.5%);
+    background-image: linear-gradient(45deg, #e8e3c7 12.5%, rgba(232, 227, 199, 0) 12.5%, rgba(232, 227, 199, 0) 37.5%, #e8e3c7 37.5%, #e8e3c7 62.5%, rgba(232, 227, 199, 0) 62.5%, rgba(232, 227, 199, 0) 87.5%, #e8e3c7 87.5%);
+    background-size: 6px 6px;
+  }
+  
+  .dashed-shadow:hover:before {
+    animation: dash-animation 30s infinite linear;
+  }
+  
+  .dashed-shadow:after {
+    z-index: 2;
+    content: attr(data-text);
+    position: absolute;
+    left: -8px;
+    top: -8px;
+    color: #b85b3f;
+    text-shadow: 3px 3px #e8e3c7;
+  }
+  
+  .hello {
+    font-family: 'Cookie',cursive;
+    font-size: calc(1.5em + 1vw);/*140pt;*/
+  }
+  
+  .sorta-block {
+    font-size: 50pt;
+    line-height: 1.1em;
+    -moz-transform: skew(0, -5deg);
+    -ms-transform: skew(0, -5deg);
+    -webkit-transform: skew(0, -5deg);
+    transform: skew(0, -5deg);
+    z-index: 3;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .sorta {
+    border-top: 4px solid #b85b3f;
+    border-bottom: 4px solid #b85b3f;
+    text-transform: uppercase;
+    z-index: 3;
+    font-style: italic;
+  }
+  
+  .hipsterish {
+    font-family: 'Sancreek', cursive;
+    font-size: 70pt;
+  }
+  
+  .dashed-shadow-text {
+    font-size: 140pt;
+    line-height: 0.7em;
+  }
+  
+  .shadow {
+    font-size: 120pt;
+    line-height: 0.8em;
+  }
+
+ .input-palabra {
+   background: transparent;
+   border: 0px;
+   font-family: 'Open Sans Condensed';
+   font-size: 0.2em;
+   width: 300px;
+   border-bottom: 3px solid #b85b3f;
+}
+.send-btn{
+  background: #b85b3f;
+  border:none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 15px;
+  font-family: 'Open Sans Condensed';
+  font-size: 0.2em
+}
