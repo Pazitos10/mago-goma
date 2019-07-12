@@ -1,15 +1,12 @@
 from BagWords import BagWords, Unsyllable, WordUsed, InvalidRule
 import numpy as np
-
-np.random.seed(17)
-
 class Game():
     
     def __init__(self, dataset_txt):
         self.score = 0
         self.bw = BagWords()
         self.words = self.load_dictionary(dataset_txt)
-        self.gamer = True
+        self.gamer = 1
         
 
     def load_dictionary(self, dataset_txt):
@@ -41,24 +38,26 @@ class Game():
             answer = np.array(self.words[np.random.choice(list(self.words.keys()))])
             word = np.random.choice(answer)
             self.bw.add_word(word)
-            return self.bw._normalize(word)
+            return 0, self.bw._normalize(word)
 
         try:
+            self.gamer = 2
             self.bw.add_word(word)
+            self.gamer = 1
             answer = np.array(self.words[self.bw.last_syllable_word])
             word = np.random.choice(answer)
             self.bw.add_word(word)
             self.score = self.score + 1
-            return self.bw._normalize(word)
+            return 0, word
         except Unsyllable:
-            print("monosilaba")
-            return self.bw._normalize(word)
+            #print("monosilaba")
+            return self.gamer, self.bw._normalize(word)
         except WordUsed:
-            print("palabra usada")
-            return self.bw._normalize(word)
+            #print("palabra usada")
+            return self.gamer, self.bw._normalize(word)
         except InvalidRule:
-            print("No cumple con la regla")
-            return self.bw._normalize(word)
+            #print("No cumple con la regla")
+            return self.gamer, self.bw._normalize(word)
 
 
 

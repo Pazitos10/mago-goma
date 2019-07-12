@@ -1,6 +1,7 @@
 import unittest
 from BagWords import BagWords, Unsyllable, InvalidRule, WordUsed
 from Game import Game
+import numpy as np
 
 class TestGame(unittest.TestCase):
     
@@ -9,25 +10,22 @@ class TestGame(unittest.TestCase):
         self.bw = BagWords()
     
     def test_run(self):
-        words = []
-        g = Game("palabras_espanol.txt")
-        p = g.run()
-        words.append(p)
-        words.append("consejo")
-        p = g.run("consejo")
-        words.append(p)
-        words.append("dadme")
-        p = g.run("dadme")
-        words.append(p)
-        words.append("ciobar")
-        p = g.run("ciobar")
-        words.append(p)
-        words.append("zalsa")
-        p = g.run("zalsa")
-        words.append(p)
-        self.assertEqual(g.bw.words_normalized, words)
+        np.random.seed(17)
+        g = Game("test_palabras_espanol.txt")
+        c, p = g.run()
+        self.assertEqual(c, 0)
+        c, p = g.run("consejo")
+        self.assertEqual(c, 0)
+        c, p = g.run("dadme")
+        self.assertEqual(c, 0)
+        c, p = g.run("ciobar")
+        self.assertEqual(c, 0)
+        c, p = g.run("zalsa")
+        self.assertEqual(c, 0)
+        self.assertEqual(g.bw.words, ['Helicón', 'consejo', 'jocundidad', 'dadme', 'meretricio', 'ciobar', 'barzal', 'zalsa', 'sayón'])
         self.assertEqual(g.score, 4)
-        g.run("balde")
+        c, p = g.run("balde")
+        
         self.assertEqual(g.score, 4)
         """with self.assertRaises(InvalidRule):
             g.run("balde")"""
