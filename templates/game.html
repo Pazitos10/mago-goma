@@ -6,7 +6,8 @@
     <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Sancreek' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="game.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/game.css') }}">
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mago Goma Destroyer</title>
@@ -18,6 +19,19 @@
         <div class="sorta-block">
           <div data-text="Destroyer"class="dashed-shadow sorta">Destroyer</div> 
         </div>
+        <div class="palabras-wrapper">
+            <div class="palabras">
+                <div class="container">
+                    <div class="even">Gato</div>
+                    <div class="odd">Toluqueño</div>
+                    <div class="even">Ñoqui</div>       
+                    <div class="odd">Quitina</div>
+                    <div class="even">Nacer</div>
+                    <div class="odd">Cercano</div>
+                </div>
+            </div>
+        </div>
+
         <form action="" class="game-form">
             <input class="input-palabra dashed-shadow" name="palabra" type="text" placeholder="Ingresá una palabra para jugar">
             <input class="send-btn" type="submit" value="Enviar palabra">

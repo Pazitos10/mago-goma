@@ -1,0 +1,88 @@
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+.logo h1 {
+    font-size: calc(4em * 1vw);
+    color: rgba(0,0,0,.6)
+}
+
+.game-form{
+    margin-top:50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 140px;
+}
+
+.input-palabra {
+   background: transparent;
+   border: 0px;
+   font-family: 'Open Sans Condensed';
+   font-size: 0.2em;
+   width: 300px;
+   border-bottom: 3px solid #b85b3f;
+}
+
+.send-btn{
+  background: #b85b3f;
+  border:none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 15px;
+  font-family: 'Open Sans Condensed';
+  font-size: 0.2em
+}
+
+.palabras-wrapper{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+
+.palabras {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  font-size: 0.6em;
+  width: 20vw;
+  line-height: 1.2em;
+  height: 80%;
+  overflow: hidden;
+  background-color: #ba91861f;
+  border-radius: 8px;
+  padding: 0 20px;
+  border: 5px solid #b85b3f;
+
+}
+
+
+/* .container {
+  position: relative;
+} */
+
+/* .container * {
+  position: relative;
+  top: -10px;
+  bottom: 10px;
+  height: auto;
+} */
+
+.container:nth-last-child(-n+2) { 
+  position: sticky;
+  bottom: 0px;
+}
+
+.odd{
+  text-align: right;
+}
+
+.even{
+  text-align: left;
+  color: #b85b3f;
+}
