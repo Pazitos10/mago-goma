@@ -10,34 +10,38 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='../static/game.css') }}">
     
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mago Goma Destroyer</title>
+    <title>El juego del Mago Goma</title>
 </head>
 <body>
-    <div class="">
-        <span data-text="Mago Goma" class="dashed-shadow hello">Mago Goma</span>
-        <br />
+    <div class="content">
         <div class="sorta-block">
-          <div data-text="Destroyer"class="dashed-shadow sorta">Destroyer</div> 
+          <div data-text="El juego del"class="dashed-shadow sorta">El juego del</div> 
         </div>
-        <div class="palabras-wrapper">
-            <div class="palabras">
+        <br />
+        <span data-text="Mago Goma" class="dashed-shadow hello">Mago Goma</span>
+
+        <div class="words-wrapper">
+            <div class="words">
                 <div class="container">
                     <div class="even">Gato</div>
                     <div class="odd">Toluqueño</div>
                     <div class="even">Ñoqui</div>       
                     <div class="odd">Quitina</div>
                     <div class="even">Nacer</div>
-                    <div class="odd">Cercano</div>
                 </div>
             </div>
         </div>
-
-        <form action="" class="game-form">
-            <input class="input-palabra dashed-shadow" name="palabra" type="text" placeholder="Ingresá una palabra para jugar">
-            <input class="send-btn" type="submit" value="Enviar palabra">
+        <form action="" class="game-form" method="post">
+            <input id="word" class="input-word dashed-shadow" name="word" type="text" placeholder="Ingresá una palabra para jugar">
+            <input id="send" class="send-btn" type="submit" value="Enviar palabra">
         </form>
+        <div class="score">
+            Puntaje: 
+            <div id="score-val">0</div>
+        </div>    
     </div>
 </body>
+<script type="text/javascript" src="{{url_for('static',filename='../static/game.js')}}"></script>
 </html>
 
 
