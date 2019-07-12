@@ -1,15 +1,18 @@
-.logo {
-    display: flex;
-    justify-content: center;
+.sorta-block{
+  font-size: 40px
 }
-
-.logo h1 {
-    font-size: calc(4em * 1vw);
-    color: rgba(0,0,0,.6)
+.hello {
+  font-size: 140px;
+}
+.content {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .game-form{
-    margin-top:50px;
+    /* margin-top:50px; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +20,7 @@
     height: 140px;
 }
 
-.input-palabra {
+.input-word {
    background: transparent;
    border: 0px;
    font-family: 'Open Sans Condensed';
@@ -36,7 +39,7 @@
   font-size: 0.2em
 }
 
-.palabras-wrapper{
+.words-wrapper{
   margin-top: 50px;
   display: flex;
   justify-content: center;
@@ -44,13 +47,13 @@
   height: 250px;
 }
 
-.palabras {
+.words {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
   font-size: 0.6em;
-  width: 20vw;
+  min-width: 20vw;
   line-height: 1.2em;
   height: 80%;
   overflow: hidden;
@@ -60,18 +63,6 @@
   border: 5px solid #b85b3f;
 
 }
-
-
-/* .container {
-  position: relative;
-} */
-
-/* .container * {
-  position: relative;
-  top: -10px;
-  bottom: 10px;
-  height: auto;
-} */
 
 .container:nth-last-child(-n+2) { 
   position: sticky;
@@ -85,4 +76,18 @@
 .even{
   text-align: left;
   color: #b85b3f;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  font-size: 0.5em;
+  color: #b85b3f;
+  text-align: left;
+  margin-top: 10px;
+  height: 100px;
+}
+
+.score * {
+  margin-left: 10px
 }
