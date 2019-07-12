@@ -29,7 +29,7 @@
             method: 'POST'
         }
         
-        fetch(`/procesar/${word}`, opts).then((res) => {
+        fetch(`/process/${word}`, opts).then((res) => {
             return res.json();
         }).then(process_response)
 
