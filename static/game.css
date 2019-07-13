@@ -52,7 +52,8 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  font-size: 0.6em;
+  /* font-size: 0.6em; */
+  font-size: 20px;
   min-width: 20vw;
   line-height: 1.2em;
   height: 80%;
@@ -69,12 +70,12 @@
   bottom: 0px;
 }
 
-.odd{
-  text-align: right;
-}
-
 .even{
   text-align: left;
+}
+
+.odd{
+  text-align: right;
   color: #b85b3f;
 }
 

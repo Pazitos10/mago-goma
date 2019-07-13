@@ -1,12 +1,12 @@
 (function () {
 
     let process_response = (res) => {
-        let {word, answer, state, score} = res
+        let {word, answer, state, score, game} = res
         // console.log(`the answer was ${answer}`);
+        add_item(word, "even")
         setTimeout(() => {
-            add_item(answer, "even")
+            add_item(answer, "odd")
         }, 1500)
-        add_item(word, "odd")
         update_score(score)
     }
 
