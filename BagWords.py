@@ -1,6 +1,7 @@
 import pyphen
 import numpy as np
 
+
 class Unsyllable(Exception):
     """Excepcion lanzada cuando la palabra es monosilaba"""
     pass
@@ -33,9 +34,9 @@ class BagWords():
 
     def add_word(self, word):
         """Valida si la ultima silaba de una palabra es la primera silaba de otra palabra"""
-        normalized_word = self._normalize(word)
         _last_syllable_word = self.last_syllable_word
-        self.first_syllable_word, self.last_syllable_word = self._separate_into_syllables(normalized_word)
+        self.first_syllable_word, self.last_syllable_word = self._separate_into_syllables(word)
+        normalized_word = self._normalize(word)
         self.last_word = normalized_word
         
         if normalized_word in self.words_normalized:
@@ -68,7 +69,7 @@ class BagWords():
             syllable = self._dic.inserted(word)
             f_syllable = syllable.split('-')[0]
             l_syllable = syllable.split('-')[-1]
-            return f_syllable, l_syllable
+            return self._normalize(f_syllable), self._normalize(l_syllable)
         else:
             raise Unsyllable
 

@@ -1,12 +1,26 @@
 from BagWords import BagWords, Unsyllable, WordUsed, InvalidRule
 import numpy as np
+
+OK = 0
+ERROR_WORD_USED = 1
+ERROR_INVALID_RULE = 2
+ERROR_UNSYLLABLE = 3
+ERROR_NOT_WORD = 4
+USER = 2
+CPU = 1
+
+np.random.seed(17)
+
+
+
+
 class Game():
     
     def __init__(self, dataset_txt):
         self.score = 0
         self.bw = BagWords()
         self.words = self.load_dictionary(dataset_txt)
-        self.gamer = 1
+        self.gamer = CPU
         
 
     def load_dictionary(self, dataset_txt):
@@ -38,26 +52,31 @@ class Game():
             answer = np.array(self.words[np.random.choice(list(self.words.keys()))])
             word = np.random.choice(answer)
             self.bw.add_word(word)
-            return 0, self.bw._normalize(word)
+            return OK, word, OK
 
         try:
-            self.gamer = 2
+            self.gamer = USER
             self.bw.add_word(word)
-            self.gamer = 1
+            self.gamer = CPU
             answer = np.array(self.words[self.bw.last_syllable_word])
             word = np.random.choice(answer)
             self.bw.add_word(word)
-            self.score = self.score + 1
-            return 0, word
+            self.score += 1
+            return OK, word, OK
+        
+        except KeyError:
+            #desconfio por parte del CPU
+            return self.gamer, word, ERROR_NOT_WORD
+
         except Unsyllable:
             #print("monosilaba")
-            return self.gamer, self.bw._normalize(word)
+            return self.gamer, word, ERROR_UNSYLLABLE
         except WordUsed:
             #print("palabra usada")
-            return self.gamer, self.bw._normalize(word)
+            return self.gamer, word, ERROR_WORD_USED
         except InvalidRule:
             #print("No cumple con la regla")
-            return self.gamer, self.bw._normalize(word)
+            return self.gamer, word, ERROR_INVALID_RULE
 
 
 
