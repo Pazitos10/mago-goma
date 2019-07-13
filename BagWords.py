@@ -37,7 +37,7 @@ class BagWords():
         _last_syllable_word = self.last_syllable_word
         self.first_syllable_word, self.last_syllable_word = self._separate_into_syllables(word)
         normalized_word = self._normalize(word)
-        self.last_word = normalized_word
+        self.last_word = word
         
         if normalized_word in self.words_normalized:
             raise WordUsed
