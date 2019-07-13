@@ -12,6 +12,70 @@ CPU = 1
 np.random.seed(17)
 
 
+class State():
+    
+    def __init__(self, game, words, bw, gamer, score):
+        self.game = game
+        self.bw = bw
+        self.words = words
+        self.gamer = gamer
+        self.score = score
+
+    def run(self, word=None):
+        pass
+
+
+class Start(State):
+    
+    def run(self, word=None):
+        if word == None:
+            answer = np.array(self.words[np.random.choice(list(self.words.keys()))])
+            word = np.random.choice(answer)
+            self.bw.add_word(word)
+            self.gamer = USER
+            return OK, word, OK, self.score
+                
+        self.bw.add_word(word)
+        self.gamer = CPU
+        self.game.state = Continue(self.game, self.words, self.bw, self.gamer, self.score)
+        
+        return self.game.state.run(word)
+
+
+class Continue(State):
+
+    def run(self, word=None):
+        if self.gamer == USER:
+            self.bw.add_word(word)
+            self.gamer = CPU
+            answer = np.array(self.words[self.bw.last_syllable_word])
+            word = np.random.choice(answer)
+            self.bw.add_word(word)
+            self.gamer = USER
+
+        else:
+            answer = np.array(self.words[self.bw.last_syllable_word])
+            word = np.random.choice(answer)
+            self.bw.add_word(word)
+            self.gamer = USER
+        
+        self.score += 1
+
+        return OK, word, OK, self.score
+
+class Bullshit(State):
+
+    def run(self, word=None):
+        self.gamer = USER
+        self.bw.add_word(word)
+        self.gamer = CPU
+        answer = np.array(self.words[self.bw.last_syllable_word])
+        word = np.random.choice(answer)
+        self.bw.add_word(word)
+        return self.gamer, word, OK, self.score
+
+
+
 
 
 class Game():
@@ -21,6 +85,7 @@ class Game():
         self.bw = BagWords()
         self.words = self.load_dictionary(dataset_txt)
         self.gamer = CPU
+        self.state = Start(self, self.words, self.bw, self.gamer, self.score)
         
 
     def load_dictionary(self, dataset_txt):
@@ -47,13 +112,36 @@ class Game():
                 continue
         return dic
 
+
+    
+    def run(self, word=None):
+        
+        try:
+            self.gamer, word, code, self.score = self.state.run(word)
+            return self.gamer, word, code
+        
+        except KeyError:
+            #desconfio por parte del CPU
+            return self.state.gamer, word, ERROR_NOT_WORD
+
+        except Unsyllable:
+            #print("monosilaba")
+            return self.state.gamer, word, ERROR_UNSYLLABLE
+        except WordUsed:
+            #print("palabra usada")
+            return self.state.gamer, word, ERROR_WORD_USED
+        except InvalidRule:
+            #print("No cumple con la regla")
+            return self.state.gamer, word, ERROR_INVALID_RULE
+
+"""
     def run(self, word=None):
         if word == None:
             answer = np.array(self.words[np.random.choice(list(self.words.keys()))])
             word = np.random.choice(answer)
             self.bw.add_word(word)
             return OK, word, OK
-
+        
         try:
             self.gamer = USER
             self.bw.add_word(word)
@@ -67,7 +155,7 @@ class Game():
         except KeyError:
             #desconfio por parte del CPU
             return self.gamer, word, ERROR_NOT_WORD
-
+        
         except Unsyllable:
             #print("monosilaba")
             return self.gamer, word, ERROR_UNSYLLABLE
@@ -77,7 +165,7 @@ class Game():
         except InvalidRule:
             #print("No cumple con la regla")
             return self.gamer, word, ERROR_INVALID_RULE
-
+"""
 
 
 

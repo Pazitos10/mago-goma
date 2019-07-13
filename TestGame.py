@@ -14,7 +14,7 @@ class TestGame(unittest.TestCase):
         np.random.seed(17)
         g = Game("test_palabras_espanol.txt")
         #words = ["consejo", "dadme", "ciobar", "zalsa"]
-        words = ["diamante", "llamame", "temor", "ñoqui"]
+        words = ["diamante", "llamame", "temor"]
         gamer, word, error = g.run()
         for w in words:
             gamer, word, error = g.run(w)
@@ -27,10 +27,8 @@ class TestGame(unittest.TestCase):
                                      'llamame',
                                      'meritoriamente',
                                      'temor',
-                                     'morgaño',
-                                     'ñoqui',
-                                     'quijotería'])
-        self.assertEqual(g.score, 4)
+                                     'morgaño'])
+        self.assertEqual(g.score, 3)
 
 
     def test_user(self):
