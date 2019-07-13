@@ -5,7 +5,7 @@ OK = 0
 ERROR_WORD_USED = 1
 ERROR_INVALID_RULE = 2
 ERROR_UNSYLLABLE = 3
-ERROR_NOT_WORD = 4
+BULLSHIT = 4
 USER = 2
 CPU = 1
 
@@ -27,6 +27,10 @@ class State():
 
 class Start(State):
     
+    def bullshit(self):
+        self.game.state = Bullshit(self.game, self.words, self.bw, self.gamer, self.score)
+
+    
     def run(self, word=None):
         if word == None:
             answer = np.array(self.words[np.random.choice(list(self.words.keys()))])
@@ -43,6 +47,9 @@ class Start(State):
 
 
 class Continue(State):
+    
+    def bullshit(self):
+        self.game.state = Bullshit(self.game, self.words, self.bw, self.gamer, self.score)
 
     def run(self, word=None):
         if self.gamer == USER:
@@ -66,14 +73,16 @@ class Continue(State):
 class Bullshit(State):
 
     def run(self, word=None):
-        self.gamer = USER
-        self.bw.add_word(word)
-        self.gamer = CPU
-        answer = np.array(self.words[self.bw.last_syllable_word])
-        word = np.random.choice(answer)
-        self.bw.add_word(word)
-        return self.gamer, word, OK, self.score
+        if self.gamer == CPU:
+            self.bw.add_word(word)
+            self.gamer = USER
+        else:
+            answer = np.array(self.words[self.bw.last_syllable_word])
+            word = np.random.choice(answer)
+            self.bw.add_word(word)
+            self.gamer = CPU
 
+        return self.gamer, word, OK, self.score
 
 
 
@@ -113,6 +122,8 @@ class Game():
         return dic
 
 
+    def bullshit(self):
+        self.state.bullshit()
     
     def run(self, word=None):
         
@@ -122,7 +133,8 @@ class Game():
         
         except KeyError:
             #desconfio por parte del CPU
-            return self.state.gamer, word, ERROR_NOT_WORD
+            self.bullshit()
+            return self.state.gamer, word, BULLSHIT
 
         except Unsyllable:
             #print("monosilaba")
@@ -133,41 +145,6 @@ class Game():
         except InvalidRule:
             #print("No cumple con la regla")
             return self.state.gamer, word, ERROR_INVALID_RULE
-
-"""
-    def run(self, word=None):
-        if word == None:
-            answer = np.array(self.words[np.random.choice(list(self.words.keys()))])
-            word = np.random.choice(answer)
-            self.bw.add_word(word)
-            return OK, word, OK
-        
-        try:
-            self.gamer = USER
-            self.bw.add_word(word)
-            self.gamer = CPU
-            answer = np.array(self.words[self.bw.last_syllable_word])
-            word = np.random.choice(answer)
-            self.bw.add_word(word)
-            self.score += 1
-            return OK, word, OK
-        
-        except KeyError:
-            #desconfio por parte del CPU
-            return self.gamer, word, ERROR_NOT_WORD
-        
-        except Unsyllable:
-            #print("monosilaba")
-            return self.gamer, word, ERROR_UNSYLLABLE
-        except WordUsed:
-            #print("palabra usada")
-            return self.gamer, word, ERROR_WORD_USED
-        except InvalidRule:
-            #print("No cumple con la regla")
-            return self.gamer, word, ERROR_INVALID_RULE
-"""
-
-
 
 
 
