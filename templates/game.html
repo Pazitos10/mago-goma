@@ -31,11 +31,17 @@
             <input id="word" class="input-word dashed-shadow" name="word" type="text" placeholder="Ingresá una palabra para jugar">
             <input id="send" class="send-btn" type="submit" value="Enviar palabra">
         </form>
+        <div class="game-over-wrapper">
+            <div class="game-over-title">Fin del juego!</div>
+            <div class="game-over-result">Acá iría la razón</div>
+            <button class="game-over-btn" id="game-over">Volver a jugar</button>
+        </div>
         <div class="score">
             Puntaje: 
             <div id="score-val">0</div>
-        </div>    
+        </div>
     </div>
+    
 </body>
 <script type="text/javascript" src="{{url_for('static',filename='../static/game.js')}}"></script>
 </html>

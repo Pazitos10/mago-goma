@@ -29,7 +29,7 @@
    border-bottom: 3px solid #b85b3f;
 }
 
-.send-btn{
+.send-btn, .game-over-btn{
   background: #b85b3f;
   border:none;
   border-radius: 5px;
@@ -74,12 +74,18 @@
   text-align: left;
 }
 
+.even-crossed-out {
+  text-align: left;
+  text-decoration: line-through;
+  text-emphasis: 1
+}
+
 .odd{
   text-align: right;
   color: #b85b3f;
 }
 
-.score {
+.score, .game-over-title {
   display: flex;
   justify-content: center;
   font-size: 0.5em;
@@ -91,4 +97,23 @@
 
 .score * {
   margin-left: 10px
+}
+
+.game-over-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-over-result {
+  font-size: 0.3em;
+  color: #ba9186;
+  display: inline-block;
+}
+
+.game-over-btn{
+  align-self: center;
+}
+
+.hidden {
+  display: none
 }
