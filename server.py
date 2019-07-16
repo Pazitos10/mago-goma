@@ -24,7 +24,22 @@ def process_word(word=None):
         'answer': g.state.bw.last_word, #La palabra respuesta o cadena vacía si no tiene respuesta (server).
         'state': error, #0: seguimos, 1: Gana server, 2: Gana participante
         'score': g.score, #cantidad de rondas que el participante pudo continuar jugando.
-        'game': gamer
+        'gamer': gamer
     }
 
+    return jsonify(data)
+
+@app.route('/bullshit', methods = ['POST'])   
+def bullshit():
+    global g
+    g.bullshit()
+    gamer, w, error = g.run()
+
+    data = {
+        'word': w, #la palabra original (user)
+        'answer': g.state.bw.last_word, #La palabra respuesta o cadena vacía si no tiene respuesta (server).
+        'state': error, #0: seguimos, 1: Gana server, 2: Gana participante
+        'score': g.score, #cantidad de rondas que el participante pudo continuar jugando.
+        'gamer': gamer
+    }
     return jsonify(data)

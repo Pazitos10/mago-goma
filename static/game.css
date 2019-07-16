@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 140px;
+    height: 210px;
 }
 
 .input-word {
@@ -29,7 +29,7 @@
    border-bottom: 3px solid #b85b3f;
 }
 
-.send-btn, .game-over-btn{
+.send-btn, .bullshit-btn, .game-over-btn{
   background: #b85b3f;
   border:none;
   border-radius: 5px;
@@ -37,6 +37,10 @@
   padding: 10px 15px;
   font-family: 'Open Sans Condensed';
   font-size: 0.2em
+}
+
+.bullshit-btn {
+  background: #ba9186
 }
 
 .words-wrapper{
@@ -104,7 +108,7 @@
   flex-direction: column;
 }
 
-.game-over-result {
+.game-over-result, .cpu-message {
   font-size: 0.3em;
   color: #ba9186;
   display: inline-block;
