@@ -17,11 +17,10 @@ def home(name=None):
 def process_word(word=None):
     global g
     gamer, w, error = g.run(word)
-    print(g.state.bw.last_word, w)
     
     data = {
-        'word': word, #la palabra original (user)
-        'answer': g.state.bw.last_word, #La palabra respuesta o cadena vacía si no tiene respuesta (server).
+        'word': g.state.bw.last_word, #la palabra original (user)
+        'answer': g.state.bw.actual_word, #La palabra respuesta o cadena vacía si no tiene respuesta (server).
         'state': error, #0: seguimos, 1: Gana server, 2: Gana participante
         'score': g.score, #cantidad de rondas que el participante pudo continuar jugando.
         'gamer': gamer
@@ -36,10 +35,11 @@ def bullshit():
     gamer, w, error = g.run()
 
     data = {
-        'word': w, #la palabra original (user)
-        'answer': g.state.bw.last_word, #La palabra respuesta o cadena vacía si no tiene respuesta (server).
+        'word': g.state.bw.last_word, #la palabra original (user)
+        'answer': g.state.bw.actual_word, #La palabra respuesta o cadena vacía si no tiene respuesta (server).
         'state': error, #0: seguimos, 1: Gana server, 2: Gana participante
         'score': g.score, #cantidad de rondas que el participante pudo continuar jugando.
         'gamer': gamer
     }
+    print(data)
     return jsonify(data)

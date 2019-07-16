@@ -6,6 +6,7 @@ ERROR_WORD_USED = 1
 ERROR_INVALID_RULE = 2
 ERROR_UNSYLLABLE = 3
 BULLSHIT = 4
+ERROR_NOT_WORD = 5
 USER = 2
 CPU = 1
 
@@ -72,15 +73,22 @@ class Continue(State):
 
 class Bullshit(State):
 
+    def bullshit(self):
+        self.run("Perdí :/")
+
     def run(self, word=None):
         if self.gamer == CPU:
             self.bw.add_word(word)
             self.gamer = USER
         else:
-            answer = np.array(self.words[self.bw.last_syllable_word])
-            word = np.random.choice(answer)
-            self.bw.add_word(word)
-            self.gamer = CPU
+            try:
+                answer = np.array(self.words[self.bw.last_syllable_word])
+                word = np.random.choice(answer)
+                self.bw.add_word(word)
+                self.gamer = CPU
+            except Exception as e:
+                self.gamer = CPU
+                self.bw.add_word("Perdi") 
 
         return self.gamer, word, OK, self.score
 
@@ -145,6 +153,7 @@ class Game():
         except InvalidRule:
             #print("No cumple con la regla")
             return self.state.gamer, word, ERROR_INVALID_RULE
+       
 
 
 

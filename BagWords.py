@@ -21,6 +21,7 @@ class BagWords():
         self._dic = pyphen.Pyphen(lang='es')
         self.words = []
         self.words_normalized = []
+        self.actual_word = None
         self.last_word = None
         self.last_syllable_word = None
         self.first_syllable_word = None
@@ -34,10 +35,11 @@ class BagWords():
 
     def add_word(self, word):
         """Valida si la ultima silaba de una palabra es la primera silaba de otra palabra"""
+        self.last_word = self.actual_word
         _last_syllable_word = self.last_syllable_word
         self.first_syllable_word, self.last_syllable_word = self._separate_into_syllables(word)
         normalized_word = self._normalize(word)
-        self.last_word = word
+        self.actual_word = word
         
         if normalized_word in self.words_normalized:
             raise WordUsed
