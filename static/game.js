@@ -34,7 +34,7 @@
                 msg = 'Ganó el Mago Goma'
                 game_over(msg)
             }else if (state == 4) {
-                msg = 'El Mago Goma te hizo desconfío'
+                msg = 'El Mago Goma dice: "Desconfío!"'
                 add_item(word, 'even')
                 game_over(msg, is_cpu = true)
             } else {
