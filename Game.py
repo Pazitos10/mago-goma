@@ -78,19 +78,21 @@ class Bullshit(State):
 
     def run(self, word=None):
         if self.gamer == CPU:
-            self.bw.add_word(word)
             self.gamer = USER
+            self.bw.add_word(word)
+            #self.gamer = USER
         else:
             try:
+                self.gamer = CPU
                 answer = np.array(self.words[self.bw.last_syllable_word])
                 word = np.random.choice(answer)
                 self.bw.add_word(word)
-                self.gamer = CPU
+                
             except Exception as e:
                 self.gamer = CPU
                 self.bw.add_word("Perdi") 
 
-        return self.gamer, word, OK, self.score
+        return self.gamer, word, BULLSHIT, self.score
 
 
 
