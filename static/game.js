@@ -13,7 +13,7 @@
     }
 
     let invalid_rule = (word, answer, state, score, gamer) => {
-        if (gamer == 2 || bullshit_state){
+        if (gamer == 2){
             console.log("regla invalida"); //OK
             add_item(answer, "even-crossed-out")
             let msg = `Perdiste! :( <br> La regla es inválida para <em>${word}</em>`
@@ -116,15 +116,12 @@
         window.location.replace('/')
     }
     
-    var bullshit_state = false
-
     document.querySelector('#bullshit').onclick = (e) => {
         e.preventDefault()
         var opts = { method: 'POST' }
         fetch(`/bullshit`, opts).then((res) => {
             return res.json();
         }).then(process_response)
-        bullshit_state = true
     }
 
     reset()
