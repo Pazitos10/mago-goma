@@ -54,6 +54,5 @@ def get_definition(word):
     r = requests.get("https://es.thefreedictionary.com/{}".format(word))
     soup = bs4.BeautifulSoup(r.text, 'html')
     definition = word
-    definition = soup.findAll("div", {'id': 'Definition'})[0]
-    #print(definition)
-    return jsonify(definition.__str__())
+    definition = soup.find("div", {'id': 'Definition'})
+    return jsonify(definition.findChild().__str__())

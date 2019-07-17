@@ -29,7 +29,7 @@
    border-bottom: 3px solid #b85b3f;
 }
 
-.send-btn, .bullshit-btn, .game-over-btn{
+.send-btn, .bullshit-btn, .game-over-btn, .close-word-definition-btn{
   background: #b85b3f;
   border:none;
   border-radius: 5px;
@@ -66,7 +66,6 @@
   border-radius: 8px;
   padding: 0 20px;
   border: 5px solid #b85b3f;
-
 }
 
 .container:nth-last-child(-n+2) { 
@@ -124,6 +123,46 @@
   align-self: center;
 }
 
+.word-definition {
+  margin-top: 10px;
+  text-align: left;
+  border: 5px solid #b85b3f;
+  background-color: #e3dabf;
+  border-radius: 8px;
+  font-size: 20px;
+  line-height: 1.1em;
+  max-height: 140px;
+  max-width: 80vw;
+  color: #b85b3f;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  cursor: pointer;
+}
+
+#definition {
+  padding: 0px 10px 10px 10px;
+  overflow-y: auto;
+  color: #ba9186
+}
+
+#definition h2 {
+  margin-top: 10px;
+  color: #b85b3f
+}
+
+.close-definition-btn{
+  content: 'Cerrar';
+  color: white;
+  border-radius: 0px;
+  padding: 0px 0px 5px 10px;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  background: #b85b3f;
+} 
+
+
 .hidden {
-  display: none
+  display: none;
 }

@@ -3,6 +3,7 @@
         document.querySelector('.game-form').classList.remove('hidden')
         document.querySelector('.game-over-wrapper').classList.add('hidden')
         document.querySelector('.cpu-bullshit').classList.add('hidden')
+        hide_definition()
     }
 
     let word_used = (word, answer, state, score, gamer) => {
@@ -131,11 +132,10 @@
             item.innerHTML = word    
             document.querySelector('.container').appendChild(item)
             document.querySelector('#word').value = ""
-            get_definition()
         }
     }
 
-    let get_definition = () =>{
+    let get_definition = () => {
         console.log("test")
         let contain = document.querySelector(".words").querySelector(".container")
         let last_word = contain.children[contain.children.length - 1].innerText
@@ -144,14 +144,17 @@
         fetch(`/definition/${last_word}`, opts).then((res) => {
             return res.json();
         }).then(add_definition)
-
     }
 
-    let add_definition = (definition) =>{
+    let add_definition = (definition) => {
         console.log(definition)
         document.querySelector("#definition").innerHTML = definition
+        document.querySelector('.word-definition').classList.remove('hidden')
     } 
 
+    let hide_definition = () => {
+        document.querySelector('.word-definition').classList.add('hidden')
+    }
 
     let update_score = (score) => {
         document.querySelector('#score-val').innerHTML = score
@@ -179,6 +182,13 @@
         }).then(process_response)
     }
 
+    document.querySelector('#close-definition').onclick = () => {
+        hide_definition()
+    }
+
+    document.querySelector('.words .container div').onclick = (e) => {
+        get_definition(e.target.innerHTML)
+    }
+
     reset()
-    get_definition()
 })();
