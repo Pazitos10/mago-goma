@@ -131,8 +131,27 @@
             item.innerHTML = word    
             document.querySelector('.container').appendChild(item)
             document.querySelector('#word').value = ""
+            get_definition()
         }
     }
+
+    let get_definition = () =>{
+        console.log("test")
+        let contain = document.querySelector(".words").querySelector(".container")
+        let last_word = contain.children[contain.children.length - 1].innerText
+        console.log(last_word)
+        var opts = { method: 'GET' }
+        fetch(`/definition/${last_word}`, opts).then((res) => {
+            return res.json();
+        }).then(add_definition)
+
+    }
+
+    let add_definition = (definition) =>{
+        console.log(definition)
+        document.querySelector("#definition").innerHTML = definition
+    } 
+
 
     let update_score = (score) => {
         document.querySelector('#score-val').innerHTML = score
@@ -161,4 +180,5 @@
     }
 
     reset()
+    get_definition()
 })();
