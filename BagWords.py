@@ -36,10 +36,11 @@ class BagWords():
     def add_word(self, word):
         """Valida si la ultima silaba de una palabra es la primera silaba de otra palabra"""
         self.last_word = self.actual_word
+        self.actual_word = word
         _last_syllable_word = self.last_syllable_word
         self.first_syllable_word, self.last_syllable_word = self._separate_into_syllables(word)
         normalized_word = self._normalize(word)
-        self.actual_word = word
+        
         
         if normalized_word in self.words_normalized:
             raise WordUsed

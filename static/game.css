@@ -84,6 +84,12 @@
   text-emphasis: 1
 }
 
+.odd-crossed-out{
+  text-align: right;
+  color: #b85b3f;
+  text-decoration: line-through;
+}
+
 .odd{
   text-align: right;
   color: #b85b3f;

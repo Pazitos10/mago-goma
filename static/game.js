@@ -8,21 +8,28 @@
     let word_used = (word, answer, state, score, gamer) => {
         console.log("palabra usada"); //OK
         add_item(word, "even-crossed-out")
-        let msg = `Perdiste! :( <br> La palabra <em>${word}</em>, fue usada anteriormente`
+        let msg = `Perdiste! :( <br> La palabra <em>${answer}</em>, fue usada anteriormente`
         game_over(msg)
     }
 
     let invalid_rule = (word, answer, state, score, gamer) => {
-        console.log("regla invalida"); //OK
-        add_item(word, "even-crossed-out")
-        let msg = `Perdiste! :( <br> La regla es inválida para <em>${word}</em>`
-        game_over(msg)
+        if (gamer == 2 || bullshit_state){
+            console.log("regla invalida"); //OK
+            add_item(answer, "even-crossed-out")
+            let msg = `Perdiste! :( <br> La regla es inválida para <em>${word}</em>`
+            game_over(msg)
+        }else{
+            console.log("regla invalida"); //OK
+            add_item(answer, "odd-crossed-out")
+            let msg = `Ganaste! :) <br> La regla es inválida para <em>${word}</em>`
+            game_over(msg)
+        }
     }
 
     let unsyllable = (word, answer, state, score, gamer) => {
         console.log("es monosilabo"); //OK
-        add_item(word, "even-crossed-out")
-        let msg = `Perdiste! :( <br> La palabra <em>${word}</em>, es monosílaba`
+        add_item(answer, "even-crossed-out")
+        let msg = `Perdiste! :( <br> La palabra <em>${answer}</em>, es monosílaba`
         game_over(msg)
     }
 
@@ -35,7 +42,7 @@
                 game_over(msg)
             }else if (state == 4) {
                 msg = 'El Mago Goma dice: "Desconfío!"'
-                add_item(word, 'even')
+                add_item(answer, 'even')
                 game_over(msg, is_cpu = true)
             } else {
                 msg = 'Ganaste!'
@@ -109,12 +116,15 @@
         window.location.replace('/')
     }
     
+    var bullshit_state = false
+
     document.querySelector('#bullshit').onclick = (e) => {
         e.preventDefault()
         var opts = { method: 'POST' }
         fetch(`/bullshit`, opts).then((res) => {
             return res.json();
         }).then(process_response)
+        bullshit_state = true
     }
 
     reset()
