@@ -4,21 +4,34 @@
 .hello {
   font-size: 140px;
 }
-.content {
+.game-container {
   margin-top: 20px;
+  height: 90vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
 }
 
-.game-form{
-    /* margin-top:50px; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 210px;
+.logo-container {
+  flex-grow: 2;
 }
+
+
+
+
+.game-form{
+  /* margin-top:50px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 210px;
+  flex-grow: 2;
+}
+
+.cpu-bullshit {
+  height: 10%;
+}
+
 
 .input-word {
    background: transparent;
@@ -44,11 +57,13 @@
 }
 
 .words-wrapper{
-  margin-top: 50px;
+  margin: 30px 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px;
+  max-height: 300px;
+  flex-direction: column;
+  flex-grow: 3;
 }
 
 .words {
@@ -56,7 +71,6 @@
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  /* font-size: 0.6em; */
   font-size: 20px;
   min-width: 20vw;
   line-height: 1.2em;
@@ -66,6 +80,18 @@
   border-radius: 8px;
   padding: 0 20px;
   border: 5px solid #b85b3f;
+  height: 80%;
+}
+
+.small-hint {
+  font-size: 14px;
+  height: 10%;
+  line-height: 1em;
+  color: #ba9186
+}
+
+.container * {
+  cursor: pointer;
 }
 
 .container:nth-last-child(-n+2) { 
@@ -116,10 +142,12 @@
 .game-over-result, .cpu-message {
   font-size: 0.3em;
   color: #ba9186;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
+
 .game-over-btn{
+  margin-top: 10px;
   align-self: center;
 }
 

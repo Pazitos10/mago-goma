@@ -13,21 +13,21 @@
     <title>El juego del Mago Goma</title>
 </head>
 <body>
-    <div>
-       
-    </div>
-    <div class="content">
-        <div class="sorta-block">
-          <div data-text="El juego del"class="dashed-shadow sorta">El juego del</div> 
+    <div class="game-container">
+        <div class="logo-container">
+            <div class="sorta-block">
+              <div data-text="El juego del"class="dashed-shadow sorta">El juego del</div> 
+            </div>
+            <span data-text="Mago Goma" class="dashed-shadow hello">Mago Goma</span>
         </div>
-        <br />
-        <span data-text="Mago Goma" class="dashed-shadow hello">Mago Goma</span>
-
         <div class="words-wrapper">
             <div class="words">
                 <div class="container">
                     <div class="odd">{{word}}</div>
                 </div>
+            </div>
+            <div class="small-hint">
+                <p>Hacé click sobre la palabra para ver su significado!</p>
             </div>
         </div>
         <form action="" class="game-form" method="post">
@@ -47,7 +47,6 @@
             Puntaje: 
             <div id="score-val">0</div>
         </div>
-        
         <div class="word-definition">
             <span id="close-definition" class="close-definition-btn">Cerrar</span>
             <div id="definition"></div>
